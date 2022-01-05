@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.horizoncorp.ordersystem.entities.pk.OrderItemPK;
 
 @Entity
@@ -15,6 +17,7 @@ public class OrderItem implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private OrderItemPK id = new OrderItemPK();
 	
 	private Integer quantity;
@@ -49,12 +52,12 @@ public class OrderItem implements Serializable{
 		id.setProduct(product);
 	}
 
-	public Integer getEntity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setEntity(Integer entity) {
-		this.quantity = entity;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 
 	public Double getPrice() {
@@ -64,6 +67,10 @@ public class OrderItem implements Serializable{
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+	
+	public Double getSubTotal() {
+		return price * quantity;
+	} 
 
 	@Override
 	public int hashCode() {
