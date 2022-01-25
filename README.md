@@ -1,4 +1,4 @@
-# Projeto utilizando o framework Spring
+# Order System - Sistema de Pedidos
 
 Projeto a nível de prática testando habilidades com Java e o framework Spring.
 
